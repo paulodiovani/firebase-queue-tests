@@ -5,7 +5,9 @@
   "main": "worker.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node worker.js",
+    "populate": "node populator.js",
+    "test": "eslint *.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,10 @@
     "eslint": "^3.1.1",
     "eslint-config-hapi": "^9.1.0",
     "eslint-plugin-hapi": "^4.0.0"
+  },
+  "dependencies": {
+    "faker": "^3.1.0",
+    "firebase": "^3.2.0",
+    "firebase-queue": "^1.5.0"
   }
 }
