@@ -4,6 +4,9 @@
   "description": "Some performance tests for Firebase Queue",
   "main": "worker.js",
   "private": true,
+  "engines": {
+    "node": "6.2.2"
+  },
   "scripts": {
     "start": "node worker.js",
     "populate": "node populator.js",
