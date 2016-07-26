@@ -1,0 +1,24 @@
+{
+  "name": "firebase-queue-tests",
+  "version": "0.1.0",
+  "description": "Some performance tests for Firebase Queue",
+  "main": "worker.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulodiovani/firebase-queue-tests.git"
+  },
+  "keywords": [
+    "firebase",
+    "queue",
+    "test"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulodiovani/firebase-queue-tests/issues"
+  },
+  "homepage": "https://github.com/paulodiovani/firebase-queue-tests#readme"
+}
