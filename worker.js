@@ -13,10 +13,5 @@ const ref = Firebase.initializeApp({
 new Queue(ref, { numWorkers: 2 }, (data, progress, resolve, reject) => {
 
     console.log(data);
-
-    if (data.number === 171) {
-        reject('deu ruim');
-    }
-
     resolve();
 });

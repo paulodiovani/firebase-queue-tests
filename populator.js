@@ -9,10 +9,11 @@ const ref = Firebase.initializeApp({
     serviceAccount: config.serviceAccount
 }).database().ref('queue');
 
+const totalTasks = 1000;
 const operations = [];
 let counter = 0;
 
-while (counter < 1000) {
+while (counter < totalTasks) {
 
     operations.push(
         ref
@@ -24,8 +25,28 @@ while (counter < 1000) {
     );
 }
 
+console.log('START PUSHING TO QUEUE');
+console.time('QUEUE PROCESS');
+
 Promise.all(operations).then(() => {
 
-    console.log('Done');
+    console.log('DONE PUSHING TO QUEUE');
+}).then(() => {
+
+    let remainingTasks = totalTasks;
+    return new Promise((resolve) => {
+
+        ref.child('tasks').on('child_removed', () => {
+
+            remainingTasks--;
+            if (remainingTasks === 0) {
+                resolve();
+            }
+        });
+    });
+}).then(() => {
+
+    console.log('DONE PROCESSING QUEUE');
+    console.timeEnd('QUEUE PROCESS');
     process.exit();
 });
