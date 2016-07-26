@@ -11,12 +11,14 @@ const ref = Firebase.initializeApp({
 }).database().ref('queue');
 
 const totalTasks = 1000;
-const operations = [];
+const populate = [];
+
+let remainingTasks = totalTasks;
 let counter = 0;
 
 while (counter < totalTasks) {
 
-    operations.push(
+    populate.push(
         ref
         .child('tasks')
         .push({
@@ -29,16 +31,18 @@ while (counter < totalTasks) {
 console.log('START PUSHING TO QUEUE');
 console.time('QUEUE PROCESS');
 
-Promise.all(operations).then(() => {
+const pushes = Promise.all(populate).then(() => {
 
     console.log('DONE PUSHING TO QUEUE');
-}).then(() => {
+});
 
-    let remainingTasks = totalTasks;
-    return new Promise((resolve) => {
 
-        ref.child('tasks').on('child_removed', () => {
+console.log('LISTEN QUEUE PROCESSING');
 
+const benchmark = new Promise((resolve) => {
+
+    ref.child('tasks').on('child_removed', (snapshot) => {
+        pushes.then(() => {
             remainingTasks--;
             process.stdout.write(`\rremaining tasks: ${leftPad(remainingTasks, 3)}`);
 
