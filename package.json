@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/paulodiovani/firebase-queue-tests/issues"
   },
-  "homepage": "https://github.com/paulodiovani/firebase-queue-tests#readme"
+  "homepage": "https://github.com/paulodiovani/firebase-queue-tests#readme",
+  "devDependencies": {
+    "eslint": "^3.1.1",
+    "eslint-config-hapi": "^9.1.0",
+    "eslint-plugin-hapi": "^4.0.0"
+  }
 }
