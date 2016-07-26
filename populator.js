@@ -2,10 +2,11 @@
 
 const Firebase = require('firebase');
 const Faker = require('faker');
+const config = require('rc')('fbqueue');
 
 const ref = Firebase.initializeApp({
-    databaseURL: 'https://is-app-3b28f.firebaseio.com/',
-    serviceAccount: './serviceAccountCredentials.json'
+    databaseURL: config.databaseURL,
+    serviceAccount: config.serviceAccount
 }).database().ref('queue');
 
 const operations = [];
