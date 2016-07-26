@@ -2,6 +2,7 @@
 
 const Firebase = require('firebase');
 const Faker = require('faker');
+const leftPad = require('left-pad');
 const config = require('rc')('fbqueue');
 
 const ref = Firebase.initializeApp({
@@ -39,7 +40,10 @@ Promise.all(operations).then(() => {
         ref.child('tasks').on('child_removed', () => {
 
             remainingTasks--;
+            process.stdout.write(`\rremaining tasks: ${leftPad(remainingTasks, 3)}`);
+
             if (remainingTasks === 0) {
+                process.stdout.write(`\n`);
                 resolve();
             }
         });
